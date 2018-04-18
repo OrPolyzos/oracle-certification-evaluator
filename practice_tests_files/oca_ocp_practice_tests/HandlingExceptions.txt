@@ -1,0 +1,272 @@
+Chapter 8: Handling Exceptions
+1. D. A try block must include either a catch or finally block, or both. The think()
+method declares a try block but neither additional block. For this reason, the code does
+not compile, and Option D is the correct answer. The rest of the lines compile without
+issue, including k1.
+2. B. The correct order of blocks is try, catch, and finally, making Option B the correct
+answer.
+3. D. Option D is the correct model. The class RuntimeException extends Exception, and
+both Exception and Error extend Throwable. Finally, like all Java classes, they all inherit
+from Object. Notice that Error does not extend Exception, even though we often refer to
+these generally as exceptions.
+4. A. While Exception and RuntimeException are commonly caught in Java applications, it
+is recommended Error not be caught. An Error often indicates a failure of the JVM which
+cannot be recovered from. For this reason, Option A is correct, and Options C and D are
+incorrect. Option B is not a class defined in the Java API; therefore, it is also incorrect.
+5. D. The application does not compile because score is defined only within the try block.
+The other three places it is referenced, in the catch block, in the finally block, and outside
+the try-catch-finally block at the end, are not in scope for this variable and each does
+not compile. Therefore, the correct answer is Option D.
+6. B. ClassCastException, ArrayIndexOutOfBoundsException, and
+IllegalArgumentException are unchecked exceptions and can be thrown at any time.
+IOException is a checked exception that must be handled or declared when used, making
+Option B the correct answer.
+7. A. The throws keyword is used in method declarations, while the throw keyword is used
+to throw an exception to the surrounding process, making Option A the correct answer.
+The catch keyword is used to handle exceptions, not to create them or in the declaration of
+a method.
+466 Appendix ■ Answers to Review Questions
+8. B. IOException is a subclass of Exception, so it must appear first in any related catch
+blocks. If Exception was to appear before IOException, then the IOException block
+would be considered unreachable code because any thrown IOException is already handled
+by the Exception catch block. For this reason, Option B is correct.
+9. C. The application first enters the try block and outputs A. It then throws a
+RuntimeException, but the exception is not caught by the catch block since
+RuntimeException is not a subclass of ArrayIndexOutOfBoundsException (it is a superclass).
+Next, the finally block is called and C is output. Finally, the RuntimeException is thrown by
+the main() method and a stack trace is printed. For these reasons, Option C is correct.
+10. C. The application does not compile, so Option D is incorrect. The openDrawbridge()
+method compiles without issue, so Options A and B are incorrect. The issue here is how
+the openDrawbridge() method is called from within the main() method on line p3. The
+openDrawbridge() method declares the checked exception, Exception, but the main()
+method from which it is called does not handle or declare the exception. In order for this
+code to compile, the main() method would have to have a try-catch statement around line
+p3 that properly handles the checked exception, or the main() would have to be updated
+to declare a compatible checked exception. For these reasons, line p3 does not compile, and
+Option C is the correct answer.
+11. B. NullPointerException and ArithmeticException both extend RuntimeException,
+which are unchecked exceptions and not required to be handled or declared in the method
+in which they are thrown. On the other hand, Exception is a checked exception and must
+be handled or declared by the method in which it is thrown. Therefore, Option B is the correct
+answer.
+12. A. The code compiles and runs without issues, so Options C and D are incorrect. The
+try block throws a ClassCastException. Since ClassCastException is not a subclass
+of ArrayIndexOutOfBoundsException, the first catch block is skipped. For the second
+catch block, ClassCastException is a subclass of Throwable, so that block is executed.
+Afterward, the finally block is executed and then control returns to the main() method
+with no exception being thrown. The result is that 1345 is printed, making Option A the
+correct answer.
+13. C. A finally block can throw an exception, in which case not every line of the finally
+block would be executed. For this reason, Options A and D are incorrect. Option B is also
+incorrect The finally block is called regardless of whether or not the related catch block
+is executed. Option C is the correct answer. Unlike an if-then statement, which can take a
+single statement, a finally statement requires brackets {}.
+14. C. The code does not compile because the catch blocks are used in the wrong order. Since
+IOException is a superclass of FileNotFoundException, the FileNotFoundException is
+considered unreachable code. For this reason, the code does not compile, and Option C is
+correct.
+15. C. A try statement requires a catch or a finally block. Without one of them, the
+code will not compile; therefore, Option D is incorrect. A try statement can also be used
+with both a catch and finally block, making Option C the correct answer. Note that
+finalize is not a keyword, but a method inherited from java.lang.Object.
+Chapter 8: Handling Exceptions 467
+16. B. Option A is a true statement about exceptions and when they are often applied.
+Option B is the false statement and the correct answer. An application that throws an
+exception can choose to handle the exception and avoid termination. Option C is also a
+true statement. For example, a NullPointerException can be avoided on a null object
+by testing whether or not the object is null before attempting to use it. Option D is also
+a correct statement. Attempting to recover from unexpected problems is an important
+aspect of proper exception handling.
+17. D. The code does not compile because the catch block uses parentheses () instead of
+brackets {}, making Option D the correct answer. Note that Boat does not extend
+Transport, so while the override on line j1 appears to be invalid since Exception is a
+broader checked exception than CapsizedException, that code compiles without issue. If
+the catch block was fixed, the code would output 4, making Option A the correct answer.
+18. B. Overridden methods cannot throw new or broader checked exceptions than the one they
+inherit. Since Exception is a broader checked exception than PrintException, Option B is
+not allowed and is the correct choice. Alternatively, declaring narrower or the same checked
+exceptions or removing them entirely is allowed, making Options A and C incorrect. Since
+Option B is correct, Option D is incorrect.
+19. D. All three of those classes belong to the java.lang package, so Option C seems like the
+correct answer. The Java compiler, though, includes java.lang by default, so no import
+statement is actually required to use those three classes, making Option D the correct
+answer.
+20. C. The code does not compile because the catch block is missing a variable type and
+name, such as catch (Exception e) . Therefore, Option C is the correct answer. Both
+implementations of getSymbol() compile without issue, including the overridden method.
+A subclass can swallow a checked exception for a method declared in a parent class; it just
+cannot declare any new or broader checked exceptions.
+21. B. Checked exceptions must be handled or declared or the program will not compile, while
+unchecked exceptions can be optionally handled. On the other hand, java.lang.Error
+should never be handled by the application because it often indicates an unrecoverable state
+in the JVM, such as running out of memory. For these reasons, Option B is the correct
+answer.
+22. B. The application does not compile, so Option D is incorrect. The checked
+KnightAttackingException thrown in the try block is handled by the associated catch
+block. The ClassCastException is an unchecked exception, so it is not required to be handled
+or declared and line q1 compiles without issue. The finally block throws a checked
+CastleUnderSiegeException, which is required to be handled or declared by the method,
+but is not. There is no try-catch around line q2, and the method does not declare a compatible
+checked exception, only an unchecked exception. For this reason, line q2 does not compile,
+and Option B is the correct answer. Lastly, line q3 compiles without issue because the
+unchecked RuntimeException is not required to be handled or declared by the call in the
+main() method.
+468 Appendix ■ Answers to Review Questions
+23. A. If an exception matches multiple catch blocks, the first one that it encounters will be
+the only one executed, making Option A correct, and Options B and C incorrect. Option
+D is also incorrect. It is possible to write two consecutive catch blocks that can catch
+the same exception, with the first type being a subclass of the second. In this scenario, an
+exception thrown of the first type would match both catch blocks, but only the first catch
+block would be executed, since it is the more specific match.
+24. C. The code does not compile due to the call to compute() in the main() method. Even
+though the compute() method only throws an unchecked exception, its method declaration
+includes the Exception class, which is a checked exception. For this reason, the checked
+exception must be handled or declared in the main() method in which it is called.
+While there is a try-catch block in the main() method, it is only for the unchecked
+NullPointerException. Since Exception is not a subclass of NullPointerException,
+the checked Exception is not properly handled or declared and the code does not compile,
+making Option C the correct answer.
+25. D. A NullPointerException can be thrown if the value of list is null. Likewise,
+an ArrayIndexOutOfBoundsException can be thrown if the value of list is an array
+with fewer than 10 elements. Finally, a ClassCastException can be thrown if list
+is assigned an object that is not of type Boolean[]. For example, the assignment
+list = (Boolean[]) new Object() will compile without issue but throws a
+ClassCastException at runtime. Therefore, the first three options are possible, making
+Option D the correct answer.
+26. B. A StackOverflowError occurs when a program recurses too deeply into an infinite
+loop. It is considered an error because the JVM often runs out of memory and cannot
+recover. A NullPointerException occurs when an instance method or variable on a
+null reference is used. For these reasons, Option B is correct. A NoClassDefFoundError
+occurs when code available at compile time is not available at runtime. A ClassCastException
+occurs when an object is cast to an incompatible reference type. Finally, an
+IllegalArgumentException occurs when invalid parameters are sent to a method.
+27. C. Checked exceptions are commonly used to force a caller to deal with an expected type
+of problem, such as the inability to write a file to the file system. Without dealing with all
+checked exceptions thrown by the method, the calling code does not compile, so Option A
+is a true statement. Option B is also a true statement. Declaring various different exceptions
+informs the caller of the potential types of problems the method can encounter. Option C is
+the correct answer. There may be no recourse in handling an exception other than to terminate
+the application. Finally, Option D is also a true statement because it gives the caller a
+chance to recover from an exception, such as writing file data to a backup location.
+28. D. This code does not compile because the catch and finally blocks are in the wrong
+order, making Option D the correct answer. If the order was flipped, the output would be
+Finished!Joyce Hopper, making Option B correct.
+29. A. A try statement is not required to have a finally block, but if it does, there can be at
+most one. Furthermore, a try statement can have any number of catch blocks or none at
+all. For these reasons, Option A is the correct answer.
+Chapter 8: Handling Exceptions 469
+30. D. The code compiles without issue, so Option C is incorrect. The key here is noticing that
+count, an instance variable, is initialized with a value of 0. The getDuckies() method
+ends up computing 5/0, which leads to an unchecked ArithmeticException at runtime,
+making Option D the correct answer.
+31. B. If both the catch and finally blocks throw an exception, the one from the finally
+block is propagated to the caller, with the one from the catch block being dropped, making
+Option B the correct answer. Note that Option C is incorrect due to the fact that only one
+exception can be thrown to the caller.
+32. A. The application does not compile because the roar() method in the BigCat class uses
+throw instead of throws, making Option A the correct answer. Note that if the correct
+keyword was used, the code would compile without issues, and Option D would be correct.
+Also the override of roar() in the Lion class is valid, since the overridden method has a
+broader access modifier and does not declare any new or broader checked exceptions.
+33. A. Although this code uses the RuntimeException and Exception classes, the question is
+about casting. Exception is not a subclass of RuntimeException, so the assignment on the
+second line throws a ClassCastException at runtime, making Option A correct.
+34. C. All exceptions in Java inherit from Throwable, making Option C the correct answer.
+Note that Error and Exception extend Throwable, and RuntimeException extends
+Exception.
+35. B. If both values are valid non-null String objects, then no exception will be thrown,
+with the statement in the finally block being executed first, before returning control to
+the main() method; therefore, the second statement is a possible output. If either value is
+null, then the toString() method will cause a NullPointerException to be thrown. In
+both cases, the finally block will execute first, printing Posted:, even if there is an exception.
+For this reason, the first statement is not a possible output, and Option B is correct.
+36. A. ClassCastException is a subclass of RuntimeException, so it must appear first in any
+related catch blocks. If RuntimeException was to appear before ClassCastException,
+then the ClassCastException block would be considered unreachable code, since any
+thrown ClassCastException is already handled by the RuntimeException catch block.
+For this reason, Option A is correct.
+37. C. Option A is incorrect. You should probably seek help if the computer is on fire! Option
+B is incorrect because code that does not compile cannot run and therefore cannot throw
+any exceptions. Option C is the best answer, since an IllegalArgumentException can be
+used to alert a caller of missing or invalid data. Option D is incorrect; finishing sooner is
+rarely considered a problem.
+38. C. The code does not compile due to an invalid override of the operate() method. An
+overridden method must not throw any new or broader checked exceptions than the
+method it inherits. Even though RuntimeException is a subclass of Exception, Exception
+is considered a new checked exception, since RuntimeException is an unchecked exception.
+Therefore, the code does not compile, and Option C is correct.
+470 Appendix ■ Answers to Review Questions
+39. D. A NullPointerException is an unchecked exception. While it can be handled by the
+surrounding method, either through a try-catch block or included in the method declaration,
+these are optional. For this reason, Option D is correct.
+40. D. In this application, the throw RuntimeException(String) statement in the zipper()
+method does not include the new keyword. The new keyword is required to create the object
+being thrown, since RuntimeException(String) is a constructor. For this reason, the code
+does not compile, and Option D is correct. If the keyword new was inserted properly, then
+the try block would throw a CastClassException, which would be replaced with a
+RuntimeException to the calling method by the catch block. The catch block in the main()
+method would then be activated, and no output would be printed, making Option C correct.
+41. C. For this question, notice that all the exceptions thrown or caught are unchecked exceptions.
+First, the ClassCastException is thrown in the try block and caught by the second
+catch block since it inherits from RuntimeException, not IllegalArgumentException.
+Next, a NullPointerException is thrown, but before it can be returned the finally
+block is executed and a RuntimeException replaces it. The application exits and the caller
+sees the RuntimeException in the stack trace, making Option C the correct answer. If the
+finally block did not throw any exceptions, then Option B would be the correct answer.
+42. D. Trick question! Options A, B, and C are each invalid overrides of the method because
+the return type must be covariant with void. For this reason, Option D is the correct
+answer. If the return types were changed to be void, then Option A would be a valid override.
+Options B and C would still be incorrect, since overridden methods cannot throw
+broader checked exceptions than the inherited method.
+43. D. The code does not compile because the catch block is missing a variable name,
+such as catch (Error e). Therefore, Option D is the correct answer. If a variable
+name was added, the application would produce a stack trace at runtime and Option C
+would be the correct answer. Because IllegalArgumentException does not inherit from
+Error, the catch block would be skipped and the exception sent to the main() method at
+runtime. Note that the declaration of RuntimeException by both methods is unnecessary
+since it is unchecked, although allowed by the compiler.
+44. D. The openDrawbridge() is capable of throwing a variety of exceptions, including
+checked Exception and DragonException as well as an unchecked RuntimeException.
+All of these are handled by the fact that the method declares the checked Exception class
+in the method signature, which all the exceptions within the class inherit. For this reason,
+the openDrawbridge() method compiles without issue. The call to openDrawbridge() in
+the main() method also compiles without issue because the main() method declares
+Exception in its signature. For these reasons, the code compiles but a stack trace is printed
+at runtime, making Option D the correct answer. In case you are wondering, the caller
+would see RuntimeException: Or maybe this one in the stack trace at runtime, since
+the exception in the finally block replaces the one from the try block. Note that the
+exception in the catch block is never reached because the RuntimeException type declared
+in the catch block does not handle Exception.
+45. C. Both IllegalArgumentException and ClassCastException inherit
+RuntimeException, but neither is a subclass of the other. For this reason, they can be listed
+in either order, making Option C the correct statement.
+Chapter 9: Working with Selected Classes from the Java API 471
+46. D. The class RuntimeException is not an interface and it cannot be implemented. For
+this reason, the Problem class does not compile, and Option D is the correct answer. Note
+that this is the only compilation problem in the application. If implements was changed to
+extends, the code would compile and Problem?Fixed! would be printed, making Option
+A the correct answer.
+47. D. The question is designed to see how closely you pay attention to throw and throws! The
+try block uses the incorrect keyword, throws, to create an exception. For this reason, the
+code does not compile, and Option D is correct. If throws was changed to throw, then the
+code would compile without issue, and Option B would be correct.
+48. D. A Java application tends to only throw an Error when the application has entered a final,
+unrecoverable state. Options A and C are incorrect. These types of errors are common and
+expected in most software applications, and should not cause the application to terminate.
+Option B uses the word temporarily, meaning the network connection will come back. In this
+case, a regular exception could be used to try to recover from this state. Option D is the correct
+answer because running out of memory is usually unrecoverable in Java.
+49. C. While a catch block is permitted to include an embedded try-catch block, the issue here
+is that the variable name e is already used by the first catch block. In the second catch
+block, it is equivalent to declaring a variable e twice. For this reason, line z1 does not compile,
+and Option C is the correct answer. If a different variable name was used for either
+catch block, then the code would compile without issue, and Option A would be the correct
+answer.
+50. B. The finally block of the snore() method throws a new checked exception on line x1,
+but there is no try-catch block around it to handle it, nor does the snore() method declare
+any checked exceptions. For these reasons, line x1 does not compile, and Option B is the
+correct answer. The rest of the lines of code compile without issue, even line x3 where a
+static method is being accessed using an instance reference. Note that the code inside the
+try block, if it ran, would produce an ArrayIndexOutOfBoundsException, which would
+be caught by the RuntimeException catch block, printing Awake!. What happens next
+would depend on how the finally block was corrected.
