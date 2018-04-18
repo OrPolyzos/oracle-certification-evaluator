@@ -1,12 +1,14 @@
 package practice_tests;
 
+import java.util.Set;
+
 public class Question {
 
     private int questionNumber;
-    private char[] answers;
+    private Set<Character> answers;
     private String answerDescription;
 
-    public Question(int questionNumber, char[] answers, String answerDescription) {
+    public Question(int questionNumber, Set<Character> answers, String answerDescription) {
         this.questionNumber = questionNumber;
         this.answers = answers;
         this.answerDescription = answerDescription;
@@ -16,7 +18,7 @@ public class Question {
         return questionNumber;
     }
 
-    public char[] getAnswers() {
+    public Set<Character> getAnswers() {
         return answers;
     }
 
