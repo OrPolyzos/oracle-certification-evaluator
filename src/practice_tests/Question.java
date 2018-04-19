@@ -25,4 +25,12 @@ public class Question {
     public String getAnswerDescription() {
         return answerDescription;
     }
+
+    @Override
+    public String toString() {
+        return "Question{" +
+                "questionNumber=" + questionNumber +
+                ", answers=" + answers +
+                '}';
+    }
 }

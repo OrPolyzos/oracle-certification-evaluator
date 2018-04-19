@@ -30,11 +30,14 @@ public class PracticeTestParser {
                 if (line.matches(ignorePattern)) continue;
                 if (line.matches(pattern)) {
                     if (questionNumber != 0 && answers.size() != 0) {
-                        questionsList.add(new Question(questionNumber, answers, answerDescription.toString()));
+                        Question question = new Question(questionNumber,answers,answerDescription.toString());
+                        answers = new LinkedHashSet<>();
+                        questionsList.add(question);
                     }
                     questionNumber = Integer.parseInt(line.split("\\. ")[0]);
                     String[] answersString = line.split("\\. ")[1].split(", ");
                     answers.clear();
+
                     for (String anAnswersString : answersString) {
                         answers.add(anAnswersString.charAt(0));
                     }
@@ -45,7 +48,8 @@ public class PracticeTestParser {
                     answerDescription.append(line.concat("\n"));
                 }
             }
-            questionsList.add(new Question(questionNumber, answers, answerDescription.toString()));
+            Question question = new Question(questionNumber,answers,answerDescription.toString());
+            questionsList.add(question);
         } catch (IOException e) {
             System.err.println("Could not read the file at: '" + this.path.concat(this.testName));
             System.exit(0);

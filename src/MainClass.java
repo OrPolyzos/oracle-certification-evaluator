@@ -7,6 +7,6 @@ public class MainClass {
     private static final String OCA_1Z0_808_PATH = "practice_tests_files\\oca_1z0_808\\";
 
     public static void main(String[] args) {
-        new PracticeTestParser(PRACTICE_TEST_FILES_PATH, PracticeTest.OCA_PRACTICE_EXAM).runTest();
+        new PracticeTestParser(PRACTICE_TEST_FILES_PATH, PracticeTest.CREATING_AND_USING_ARRAYS).runTest();
     }
 }
